@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Embedded extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4509396436082203816L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Embedded\",\"namespace\":\"me.geales.avro\",\"fields\":[{\"name\":\"header\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"HeaderRecord\",\"fields\":[{\"name\":\"appID\",\"type\":\"string\"}]}]},{\"name\":\"myMap\",\"type\":{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"Embedded\",{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"Embedded\"]},{\"type\":\"array\",\"items\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"Embedded\"]}]}}]}");
+  private static final long serialVersionUID = 4193749911539918106L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Embedded\",\"namespace\":\"me.geales.avro\",\"fields\":[{\"name\":\"header\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"HeaderRecord\",\"fields\":[{\"name\":\"appID\",\"type\":\"string\"}]}]},{\"name\":\"payload\",\"type\":{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",{\"type\":\"record\",\"name\":\"Collection\",\"fields\":[{\"name\":\"data\",\"type\":[{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"Collection\"]},{\"type\":\"array\",\"items\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"Collection\"]}]}]}]},{\"type\":\"array\",\"items\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"Collection\"]}]}}],\"types\":[]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -52,7 +52,7 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
   }
 
   @Deprecated public me.geales.avro.HeaderRecord header;
-  @Deprecated public java.util.Map<java.lang.CharSequence,java.lang.Object> myMap;
+  @Deprecated public java.util.Map<java.lang.CharSequence,java.lang.Object> payload;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -64,11 +64,11 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
   /**
    * All-args constructor.
    * @param header The new value for header
-   * @param myMap The new value for myMap
+   * @param payload The new value for payload
    */
-  public Embedded(me.geales.avro.HeaderRecord header, java.util.Map<java.lang.CharSequence,java.lang.Object> myMap) {
+  public Embedded(me.geales.avro.HeaderRecord header, java.util.Map<java.lang.CharSequence,java.lang.Object> payload) {
     this.header = header;
-    this.myMap = myMap;
+    this.payload = payload;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -76,7 +76,7 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return header;
-    case 1: return myMap;
+    case 1: return payload;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -86,7 +86,7 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: header = (me.geales.avro.HeaderRecord)value$; break;
-    case 1: myMap = (java.util.Map<java.lang.CharSequence,java.lang.Object>)value$; break;
+    case 1: payload = (java.util.Map<java.lang.CharSequence,java.lang.Object>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -108,19 +108,19 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
   }
 
   /**
-   * Gets the value of the 'myMap' field.
-   * @return The value of the 'myMap' field.
+   * Gets the value of the 'payload' field.
+   * @return The value of the 'payload' field.
    */
-  public java.util.Map<java.lang.CharSequence,java.lang.Object> getMyMap() {
-    return myMap;
+  public java.util.Map<java.lang.CharSequence,java.lang.Object> getPayload() {
+    return payload;
   }
 
   /**
-   * Sets the value of the 'myMap' field.
+   * Sets the value of the 'payload' field.
    * @param value the value to set.
    */
-  public void setMyMap(java.util.Map<java.lang.CharSequence,java.lang.Object> value) {
-    this.myMap = value;
+  public void setPayload(java.util.Map<java.lang.CharSequence,java.lang.Object> value) {
+    this.payload = value;
   }
 
   /**
@@ -157,7 +157,7 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
 
     private me.geales.avro.HeaderRecord header;
     private me.geales.avro.HeaderRecord.Builder headerBuilder;
-    private java.util.Map<java.lang.CharSequence,java.lang.Object> myMap;
+    private java.util.Map<java.lang.CharSequence,java.lang.Object> payload;
 
     /** Creates a new Builder */
     private Builder() {
@@ -177,8 +177,8 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
       if (other.hasHeaderBuilder()) {
         this.headerBuilder = me.geales.avro.HeaderRecord.newBuilder(other.getHeaderBuilder());
       }
-      if (isValidValue(fields()[1], other.myMap)) {
-        this.myMap = data().deepCopy(fields()[1].schema(), other.myMap);
+      if (isValidValue(fields()[1], other.payload)) {
+        this.payload = data().deepCopy(fields()[1].schema(), other.payload);
         fieldSetFlags()[1] = true;
       }
     }
@@ -194,8 +194,8 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
         fieldSetFlags()[0] = true;
       }
       this.headerBuilder = null;
-      if (isValidValue(fields()[1], other.myMap)) {
-        this.myMap = data().deepCopy(fields()[1].schema(), other.myMap);
+      if (isValidValue(fields()[1], other.payload)) {
+        this.payload = data().deepCopy(fields()[1].schema(), other.payload);
         fieldSetFlags()[1] = true;
       }
     }
@@ -275,40 +275,40 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
     }
 
     /**
-      * Gets the value of the 'myMap' field.
+      * Gets the value of the 'payload' field.
       * @return The value.
       */
-    public java.util.Map<java.lang.CharSequence,java.lang.Object> getMyMap() {
-      return myMap;
+    public java.util.Map<java.lang.CharSequence,java.lang.Object> getPayload() {
+      return payload;
     }
 
     /**
-      * Sets the value of the 'myMap' field.
-      * @param value The value of 'myMap'.
+      * Sets the value of the 'payload' field.
+      * @param value The value of 'payload'.
       * @return This builder.
       */
-    public me.geales.avro.Embedded.Builder setMyMap(java.util.Map<java.lang.CharSequence,java.lang.Object> value) {
+    public me.geales.avro.Embedded.Builder setPayload(java.util.Map<java.lang.CharSequence,java.lang.Object> value) {
       validate(fields()[1], value);
-      this.myMap = value;
+      this.payload = value;
       fieldSetFlags()[1] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'myMap' field has been set.
-      * @return True if the 'myMap' field has been set, false otherwise.
+      * Checks whether the 'payload' field has been set.
+      * @return True if the 'payload' field has been set, false otherwise.
       */
-    public boolean hasMyMap() {
+    public boolean hasPayload() {
       return fieldSetFlags()[1];
     }
 
 
     /**
-      * Clears the value of the 'myMap' field.
+      * Clears the value of the 'payload' field.
       * @return This builder.
       */
-    public me.geales.avro.Embedded.Builder clearMyMap() {
-      myMap = null;
+    public me.geales.avro.Embedded.Builder clearPayload() {
+      payload = null;
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -323,7 +323,7 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
         } else {
           record.header = fieldSetFlags()[0] ? this.header : (me.geales.avro.HeaderRecord) defaultValue(fields()[0]);
         }
-        record.myMap = fieldSetFlags()[1] ? this.myMap : (java.util.Map<java.lang.CharSequence,java.lang.Object>) defaultValue(fields()[1]);
+        record.payload = fieldSetFlags()[1] ? this.payload : (java.util.Map<java.lang.CharSequence,java.lang.Object>) defaultValue(fields()[1]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

@@ -9,17 +9,26 @@
         {"name":"appID", "type":"string"}
       ]}
     ]},
-    {"name": "myMap", "type": {
+    {"name": "payload", "type": {
       "type": "map", "values": [
-      "boolean","int","long","float","double","string","Embedded",
+      "boolean","int","long","float","double","string",
       {"type": "map", "values": [
-        "boolean","int","long","float","double","string","Embedded"
+        "boolean","int","long","float","double","string",
+        {"type": "record", "name": "Collection", "namespace": "me.geales.avro", "fields": [
+          {"name":"data", "type":[
+            {"type": "map", "values": [
+              "boolean","int","long","float","double","string", "Collection"
+            ]},
+            {"type":"array", "items": [
+              "boolean","int","long","float","double","string", "Collection"
+            ]}
+          ]}
+        ]}
       ]},
       {"type": "array", "items": [
-        "boolean","int","long","float","double","string","Embedded"
+        "boolean","int","long","float","double","string","Collection"
       ]}
-    ]
-    }
-    }
-  ]
+    ]}}
+
+  ], "types": []
 }
