@@ -1,0 +1,25 @@
+{
+  "type": "record",
+  "name": "Embedded",
+  "namespace": "me.geales.avro",
+  "fields": [
+    {"name": "header", "type": [
+      "null",
+      {"type": "record", "name": "HeaderRecord", "namespace": "me.geales.avro", "fields": [
+        {"name":"appID", "type":"string"}
+      ]}
+    ]},
+    {"name": "myMap", "type": {
+      "type": "map", "values": [
+      "boolean","int","long","float","double","string","Embedded",
+      {"type": "map", "values": [
+        "boolean","int","long","float","double","string","Embedded"
+      ]},
+      {"type": "array", "items": [
+        "boolean","int","long","float","double","string","Embedded"
+      ]}
+    ]
+    }
+    }
+  ]
+}
