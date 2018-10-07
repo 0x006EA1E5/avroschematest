@@ -10,6 +10,8 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
+import java.util.Map;
+
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class EmbeddedMap extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
@@ -46,9 +48,9 @@ public class EmbeddedMap extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /** Deserializes a EmbeddedMap from a ByteBuffer. */
-  public static EmbeddedMap fromByteBuffer(
+  public static Map<CharSequence, Object> fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
+    return DECODER.decode(b).getMap();
   }
 
   @Deprecated public java.util.Map<java.lang.CharSequence,java.lang.Object> map;

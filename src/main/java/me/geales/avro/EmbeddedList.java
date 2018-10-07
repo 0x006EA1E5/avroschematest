@@ -10,6 +10,8 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
+import java.util.List;
+
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class EmbeddedList extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
@@ -46,9 +48,9 @@ public class EmbeddedList extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /** Deserializes a EmbeddedList from a ByteBuffer. */
-  public static EmbeddedList fromByteBuffer(
+  public static List<Object> fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
+    return DECODER.decode(b).getList();
   }
 
   @Deprecated public java.util.List<java.lang.Object> list;

@@ -31,10 +31,10 @@ public class EmbeddedTest {
 
         Map<CharSequence, Object> subSubMap = new HashMap<>();
         subSubMap.put("subsubkey", "value");
-        EmbeddedMap embeddedMap = new EmbeddedMap(subSubMap);
+        EmbeddedMap2 embeddedMap = new EmbeddedMap2(subSubMap);
         subMap.put("embeddedMap", embeddedMap);
-        EmbeddedList embeddedList = new EmbeddedList(Arrays.asList(5,6,7,8));
-        subMap.put("embeddedList", embeddedList);
+        EmbeddedList2 embeddedList = new EmbeddedList2(Arrays.asList(5,6,7,8));
+//        subMap.put("embeddedList", embeddedList);
         Embedded embedded = new Embedded(headerRecord, objectObjectHashMap);
 
         ByteBuffer byteBuffer = embedded.toByteBuffer();
