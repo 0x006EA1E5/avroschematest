@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Embedded extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 7968294033962785215L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Embedded\",\"namespace\":\"me.geales.avro\",\"fields\":[{\"name\":\"header\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"HeaderRecord\",\"fields\":[{\"name\":\"appID\",\"type\":\"string\"}]}]},{\"name\":\"payload\",\"type\":{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",{\"type\":\"record\",\"name\":\"EmbeddedMap\",\"fields\":[{\"name\":\"map\",\"type\":{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"EmbeddedMap\",{\"type\":\"record\",\"name\":\"EmbeddedList\",\"fields\":[{\"name\":\"list\",\"type\":{\"type\":\"array\",\"items\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"EmbeddedMap\",\"EmbeddedList\"]}}]}]}}]},\"EmbeddedList\"]},{\"type\":\"array\",\"items\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"EmbeddedMap\",\"EmbeddedList\"]}]}}],\"types\":[]}");
+  private static final long serialVersionUID = 2740340728243062907L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Embedded\",\"namespace\":\"me.geales.avro\",\"fields\":[{\"name\":\"header\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"HeaderRecord\",\"fields\":[{\"name\":\"appID\",\"type\":\"string\"}]}]},{\"name\":\"payload\",\"type\":{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",{\"type\":\"record\",\"name\":\"EmbeddedMap\",\"fields\":[{\"name\":\"map\",\"type\":{\"type\":\"map\",\"values\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"EmbeddedMap\",{\"type\":\"record\",\"name\":\"EmbeddedList\",\"fields\":[{\"name\":\"list\",\"type\":{\"type\":\"array\",\"items\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"EmbeddedMap\",\"EmbeddedList\"]}},{\"name\":\"containsEmbeddedMap\",\"type\":\"boolean\"},{\"name\":\"containsEmbeddedList\",\"type\":\"boolean\"}]}]}},{\"name\":\"containsEmbeddedMap\",\"type\":\"boolean\"},{\"name\":\"containsEmbeddedList\",\"type\":\"boolean\"}]},\"EmbeddedList\"]},{\"type\":\"array\",\"items\":[\"boolean\",\"int\",\"long\",\"float\",\"double\",\"string\",\"EmbeddedMap\",\"EmbeddedList\"]}]}},{\"name\":\"containsEmbeddedMap\",\"type\":\"boolean\"},{\"name\":\"containsEmbeddedList\",\"type\":\"boolean\"}],\"types\":[]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -53,6 +53,8 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
 
   @Deprecated public me.geales.avro.HeaderRecord header;
   @Deprecated public java.util.Map<java.lang.CharSequence,java.lang.Object> payload;
+  @Deprecated public boolean containsEmbeddedMap;
+  @Deprecated public boolean containsEmbeddedList;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -65,10 +67,14 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
    * All-args constructor.
    * @param header The new value for header
    * @param payload The new value for payload
+   * @param containsEmbeddedMap The new value for containsEmbeddedMap
+   * @param containsEmbeddedList The new value for containsEmbeddedList
    */
-  public Embedded(me.geales.avro.HeaderRecord header, java.util.Map<java.lang.CharSequence,java.lang.Object> payload) {
+  public Embedded(me.geales.avro.HeaderRecord header, java.util.Map<java.lang.CharSequence,java.lang.Object> payload, java.lang.Boolean containsEmbeddedMap, java.lang.Boolean containsEmbeddedList) {
     this.header = header;
     this.payload = payload;
+    this.containsEmbeddedMap = containsEmbeddedMap;
+    this.containsEmbeddedList = containsEmbeddedList;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -77,6 +83,8 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
     switch (field$) {
     case 0: return header;
     case 1: return payload;
+    case 2: return containsEmbeddedMap;
+    case 3: return containsEmbeddedList;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -87,6 +95,8 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
     switch (field$) {
     case 0: header = (me.geales.avro.HeaderRecord)value$; break;
     case 1: payload = (java.util.Map<java.lang.CharSequence,java.lang.Object>)value$; break;
+    case 2: containsEmbeddedMap = (java.lang.Boolean)value$; break;
+    case 3: containsEmbeddedList = (java.lang.Boolean)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -124,6 +134,38 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
   }
 
   /**
+   * Gets the value of the 'containsEmbeddedMap' field.
+   * @return The value of the 'containsEmbeddedMap' field.
+   */
+  public java.lang.Boolean getContainsEmbeddedMap() {
+    return containsEmbeddedMap;
+  }
+
+  /**
+   * Sets the value of the 'containsEmbeddedMap' field.
+   * @param value the value to set.
+   */
+  public void setContainsEmbeddedMap(java.lang.Boolean value) {
+    this.containsEmbeddedMap = value;
+  }
+
+  /**
+   * Gets the value of the 'containsEmbeddedList' field.
+   * @return The value of the 'containsEmbeddedList' field.
+   */
+  public java.lang.Boolean getContainsEmbeddedList() {
+    return containsEmbeddedList;
+  }
+
+  /**
+   * Sets the value of the 'containsEmbeddedList' field.
+   * @param value the value to set.
+   */
+  public void setContainsEmbeddedList(java.lang.Boolean value) {
+    this.containsEmbeddedList = value;
+  }
+
+  /**
    * Creates a new Embedded RecordBuilder.
    * @return A new Embedded RecordBuilder
    */
@@ -158,6 +200,8 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
     private me.geales.avro.HeaderRecord header;
     private me.geales.avro.HeaderRecord.Builder headerBuilder;
     private java.util.Map<java.lang.CharSequence,java.lang.Object> payload;
+    private boolean containsEmbeddedMap;
+    private boolean containsEmbeddedList;
 
     /** Creates a new Builder */
     private Builder() {
@@ -181,6 +225,14 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
         this.payload = data().deepCopy(fields()[1].schema(), other.payload);
         fieldSetFlags()[1] = true;
       }
+      if (isValidValue(fields()[2], other.containsEmbeddedMap)) {
+        this.containsEmbeddedMap = data().deepCopy(fields()[2].schema(), other.containsEmbeddedMap);
+        fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.containsEmbeddedList)) {
+        this.containsEmbeddedList = data().deepCopy(fields()[3].schema(), other.containsEmbeddedList);
+        fieldSetFlags()[3] = true;
+      }
     }
 
     /**
@@ -197,6 +249,14 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
       if (isValidValue(fields()[1], other.payload)) {
         this.payload = data().deepCopy(fields()[1].schema(), other.payload);
         fieldSetFlags()[1] = true;
+      }
+      if (isValidValue(fields()[2], other.containsEmbeddedMap)) {
+        this.containsEmbeddedMap = data().deepCopy(fields()[2].schema(), other.containsEmbeddedMap);
+        fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.containsEmbeddedList)) {
+        this.containsEmbeddedList = data().deepCopy(fields()[3].schema(), other.containsEmbeddedList);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -313,6 +373,82 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
       return this;
     }
 
+    /**
+      * Gets the value of the 'containsEmbeddedMap' field.
+      * @return The value.
+      */
+    public java.lang.Boolean getContainsEmbeddedMap() {
+      return containsEmbeddedMap;
+    }
+
+    /**
+      * Sets the value of the 'containsEmbeddedMap' field.
+      * @param value The value of 'containsEmbeddedMap'.
+      * @return This builder.
+      */
+    public me.geales.avro.Embedded.Builder setContainsEmbeddedMap(boolean value) {
+      validate(fields()[2], value);
+      this.containsEmbeddedMap = value;
+      fieldSetFlags()[2] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'containsEmbeddedMap' field has been set.
+      * @return True if the 'containsEmbeddedMap' field has been set, false otherwise.
+      */
+    public boolean hasContainsEmbeddedMap() {
+      return fieldSetFlags()[2];
+    }
+
+
+    /**
+      * Clears the value of the 'containsEmbeddedMap' field.
+      * @return This builder.
+      */
+    public me.geales.avro.Embedded.Builder clearContainsEmbeddedMap() {
+      fieldSetFlags()[2] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'containsEmbeddedList' field.
+      * @return The value.
+      */
+    public java.lang.Boolean getContainsEmbeddedList() {
+      return containsEmbeddedList;
+    }
+
+    /**
+      * Sets the value of the 'containsEmbeddedList' field.
+      * @param value The value of 'containsEmbeddedList'.
+      * @return This builder.
+      */
+    public me.geales.avro.Embedded.Builder setContainsEmbeddedList(boolean value) {
+      validate(fields()[3], value);
+      this.containsEmbeddedList = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'containsEmbeddedList' field has been set.
+      * @return True if the 'containsEmbeddedList' field has been set, false otherwise.
+      */
+    public boolean hasContainsEmbeddedList() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'containsEmbeddedList' field.
+      * @return This builder.
+      */
+    public me.geales.avro.Embedded.Builder clearContainsEmbeddedList() {
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public Embedded build() {
@@ -324,6 +460,8 @@ public class Embedded extends org.apache.avro.specific.SpecificRecordBase implem
           record.header = fieldSetFlags()[0] ? this.header : (me.geales.avro.HeaderRecord) defaultValue(fields()[0]);
         }
         record.payload = fieldSetFlags()[1] ? this.payload : (java.util.Map<java.lang.CharSequence,java.lang.Object>) defaultValue(fields()[1]);
+        record.containsEmbeddedMap = fieldSetFlags()[2] ? this.containsEmbeddedMap : (java.lang.Boolean) defaultValue(fields()[2]);
+        record.containsEmbeddedList = fieldSetFlags()[3] ? this.containsEmbeddedList : (java.lang.Boolean) defaultValue(fields()[3]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

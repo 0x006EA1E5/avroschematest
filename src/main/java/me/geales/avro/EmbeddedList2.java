@@ -7,8 +7,8 @@ import java.util.ListIterator;
 
 public class EmbeddedList2 extends EmbeddedList implements List<Object>  {
 
-    public EmbeddedList2(List<Object> list) {
-        super(list);
+    public EmbeddedList2(List<Object> list, boolean containsEmbeddedMap, boolean containsEmbeddedList) {
+        super(list, containsEmbeddedMap, containsEmbeddedList);
     }
 
     private List<Object> getBackingList() {

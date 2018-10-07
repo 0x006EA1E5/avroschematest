@@ -23,18 +23,23 @@
                   {"type":"array", "items": [
                     "boolean","int","long","float","double","string", "EmbeddedMap", "EmbeddedList"
                   ]}
-                }
+                },
+                {"name": "containsEmbeddedMap", "type": "boolean"},
+                {"name": "containsEmbeddedList", "type": "boolean"}
               ]}
             ]}
 
-          }
+          },
+          {"name": "containsEmbeddedMap", "type": "boolean"},
+          {"name": "containsEmbeddedList", "type": "boolean"}
         ]},
         "EmbeddedList"
       ]},
         {"type":"array", "items": [
           "boolean","int","long","float","double","string", "EmbeddedMap", "EmbeddedList"
         ]}
-    ]}}
-
+    ]}},
+    {"name": "containsEmbeddedMap", "type": "boolean"},
+    {"name": "containsEmbeddedList", "type": "boolean"}
   ], "types": []
 }

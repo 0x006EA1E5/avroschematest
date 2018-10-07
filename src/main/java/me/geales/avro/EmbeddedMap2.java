@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class EmbeddedMap2 extends EmbeddedMap implements Map<CharSequence, Object> {
 
-    public EmbeddedMap2(Map<CharSequence, Object> map) {
-        super(map);
+    public EmbeddedMap2(Map<CharSequence, Object> map, boolean containsEmbeddedMap, boolean containsEmbeddedList) {
+        super(map, containsEmbeddedMap, containsEmbeddedList);
     }
 
     private Map<CharSequence, Object> getBackingMap() {
