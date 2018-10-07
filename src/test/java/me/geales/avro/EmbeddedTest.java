@@ -25,25 +25,25 @@ public class EmbeddedTest {
         subMap.put("key1", "val1");
         subMap.put("key2", "val2");
         subMap.put("key3", 1234);
-        subMap.put("key4", new Float(567.8));
+        subMap.put("key4", 567.8f);
         objectObjectHashMap.put("subMap", subMap);
         objectObjectHashMap.put("list", Arrays.asList(1,2,3,4));
 
         Map<CharSequence, Object> subSubMap = new HashMap<>();
         subSubMap.put("subsubkey", "value");
-        Collection collection1 = new Collection(subSubMap);
-        subMap.put("collection1", collection1);
-        Collection collection2 = new Collection(Arrays.asList(5,6,7,8));
-        subMap.put("collection2", collection2);
+        EmbeddedMap embeddedMap = new EmbeddedMap(subSubMap);
+        subMap.put("embeddedMap", embeddedMap);
+        EmbeddedList embeddedList = new EmbeddedList(Arrays.asList(5,6,7,8));
+        subMap.put("embeddedList", embeddedList);
         Embedded embedded = new Embedded(headerRecord, objectObjectHashMap);
 
         ByteBuffer byteBuffer = embedded.toByteBuffer();
 
-        Embedded embedded1 = Embedded.fromByteBuffer(byteBuffer);
+        Embedded deserialisedEmbedded = Embedded.fromByteBuffer(byteBuffer);
 
-        Map<CharSequence, Object> myMap = embedded.getPayload();
+        Map<CharSequence, Object> outputMap = deserialisedEmbedded.getPayload();
 //        myMap.forEach((charSequence, o) -> System.out.println(o.getClass()));
-        System.out.println(myMap);
+        System.out.println(outputMap);
 
     }
 
