@@ -1,13 +1,11 @@
 package me.geales.avro;
 
+import org.apache.avro.generic.GenericData;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -31,10 +29,12 @@ public class EmbeddedTest {
 
         Map<CharSequence, Object> subSubMap = new HashMap<>();
         subSubMap.put("subsubkey", "value");
-        EmbeddedMap2 embeddedMap = new EmbeddedMap2(subSubMap);
+        EmbeddedMap embeddedMap = new EmbeddedMap(subSubMap);
         subMap.put("embeddedMap", embeddedMap);
-        EmbeddedList2 embeddedList = new EmbeddedList2(Arrays.asList(5,6,7,8));
-//        subMap.put("embeddedList", embeddedList);
+        Map nestedNestedMap = new HashMap<>();
+        subSubMap.put("nestedMap", new EmbeddedMap(nestedNestedMap));
+        EmbeddedList embeddedList = new EmbeddedList(Arrays.asList(5,6,7,8));
+        subMap.put("embeddedList", embeddedList);
         Embedded embedded = new Embedded(headerRecord, objectObjectHashMap);
 
         ByteBuffer byteBuffer = embedded.toByteBuffer();
@@ -42,9 +42,56 @@ public class EmbeddedTest {
         Embedded deserialisedEmbedded = Embedded.fromByteBuffer(byteBuffer);
 
         Map<CharSequence, Object> outputMap = deserialisedEmbedded.getPayload();
+        replaceEmbeddedMaps(outputMap);
 //        myMap.forEach((charSequence, o) -> System.out.println(o.getClass()));
         System.out.println(outputMap);
 
+    }
+
+    private Map<CharSequence, Object>  replaceEmbeddedMaps(Map<CharSequence, Object> map) {
+        for (Map.Entry o : map.entrySet()) {
+            if (o.getValue() instanceof EmbeddedMap) {
+                map.put((CharSequence) o.getKey(), replaceEmbeddedMaps(((EmbeddedMap) o.getValue()).getMap()));
+            }
+            else if (o.getValue() instanceof Map) {
+                Map m = (Map<CharSequence, Object>) o.getValue();
+                map.put((CharSequence) o.getKey(), replaceEmbeddedMaps(m));
+            }
+            else if (o.getValue() instanceof EmbeddedList) {
+                EmbeddedList a = (EmbeddedList) o.getValue();
+                map.put((CharSequence) o.getKey(), replaceEmbeddedLists(a.getList()));
+            }
+            else if (o.getValue() instanceof GenericData.Array) {
+                List a = (GenericData.Array) o.getValue();
+                map.put((CharSequence) o.getKey(), replaceEmbeddedLists(a));
+            }
+
+        }
+        return map;
+    }
+
+    private List<Object>  replaceEmbeddedLists(List<Object> list) {
+        for (int i = 0; i < list.size(); i++) {
+            Object o = list.get(i);
+
+            if (o instanceof EmbeddedMap) {
+
+                list.set(i, replaceEmbeddedMaps(((EmbeddedMap) o).getMap()));
+            }
+            else if (o instanceof Map) {
+                list.set(i, replaceEmbeddedMaps((Map<CharSequence, Object>) o));
+            }
+            else if (o instanceof EmbeddedList) {
+                EmbeddedList a = (EmbeddedList) o;
+                list.set(i, replaceEmbeddedLists(a.getList()));
+            }
+            else if (o instanceof GenericData.Array) {
+                List a = (GenericData.Array) o;
+                list.set(i, replaceEmbeddedLists(a));
+            }
+
+        }
+        return list;
     }
 
 }
