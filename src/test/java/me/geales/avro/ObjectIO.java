@@ -1,9 +1,15 @@
 package me.geales.avro;
 
+import com.jsoniter.JsonIterator;
+
+
+import com.jsoniter.output.EncodingMode;
+import com.jsoniter.output.JsonStream;
 import org.junit.Test;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ObjectIO {
 
@@ -45,5 +51,68 @@ public class ObjectIO {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void jsonIter() {
+//        JsonIterator.setMode(DecodingMode.DYNAMIC_MODE_AND_MATCH_FIELD_WITH_HASH);
+        JsonStream.setMode(EncodingMode.DYNAMIC_MODE);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("key1", "value");
+        hashMap.put("key2", 4);
+        String serialize = JsonStream.serialize(hashMap);
+//        System.out.println(serialize);
+        serialize.getBytes();
+
+        Sample sample = new Sample();
+//        sample.bytes = (serialize.getBytes());
+        sample.field = ("value");
+        sample.map = hashMap;
+        String sampleJson = JsonStream.serialize(sample);
+
+        System.out.println(sampleJson);
+
+        try {
+            Sample read = JsonIterator.parse(sampleJson).read(Sample.class);
+
+            System.out.println(read.map);
+
+//            Object parse = JsonIterator.parse(sampleJson).read();//.read(Sample.class);
+//            System.out.println(parse.getBytes().length);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testRecords() throws IOException {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("key1", "value");
+        hashMap.put("key2", 4);
+
+        Record record1 = new Record();
+        record1.ApproximateArrivalTimestamp = 1;
+        record1.Data = hashMap;
+
+        Record record2 = new Record();
+        record2.ApproximateArrivalTimestamp = 1;
+        record2.Data = hashMap;
+
+        RecordList recordList = new RecordList();
+
+        ArrayList<Record> records = new ArrayList<>();
+        records.add(record1);
+        records.add(record2);
+        recordList.records = records;
+
+        String serialize = JsonStream.serialize(recordList);
+        System.out.println(serialize);
+
+
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(serialize.getBytes());
+        RecordList recordList1 = JsonIterator.parse(byteArrayInputStream, 128).read(RecordList.class);
+
+        System.out.println(recordList1.records);
     }
 }
